@@ -27,6 +27,7 @@ class StoreProjectRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'nullable|array|exists:technologies,id',
             'description' => 'required|string',
             'github_link' => 'required|url|regex:/github/',
             'cover_img' => 'required|image'
