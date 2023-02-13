@@ -22,6 +22,12 @@
                     <span>{{ $project->type->name }}</span>
                 </li> 
                 <li class="list-group-item">
+                    <span class="fw-bold">Technology:</span>
+                    @foreach ($project->technologies as $technology)
+            <span class="badge rounded-pill text-bg-info">{{ $technology->name }}</span>
+          @endforeach
+                </li> 
+                <li class="list-group-item">
                     <span class="fw-bold">Link GitHub: </span>
                     <span>{{ $project->github_link }}</span>
                 </li>

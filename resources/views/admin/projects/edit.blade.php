@@ -26,6 +26,15 @@
         <input type="file" class="form-control" name="cover_img" value="{{ $project->cover_img }}">
     </div>
     <div class="mb-3">
+        <label class="form-label d-block">Tecnologia</label>            
+        @foreach ($technologies as $technology)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="technologyCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="technologies[]">
+                <label class="form-check-label" for="technologyCheckbox_{{ $loop->index }}">{{ $technology->name }}</label> 
+            </div>
+        @endforeach
+    </div>
+    <div class="mb-3">
         <label class="form-label">Link GitHub</label>
         <input type="text" class="form-control" name="github_link" value="{{ $project->github_link }}">
     </div>

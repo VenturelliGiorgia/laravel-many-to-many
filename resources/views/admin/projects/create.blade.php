@@ -37,6 +37,15 @@
             <textarea name="description" cols="30" rows="5" class="form-control"></textarea>
         </div>
         <div class="mb-3">
+        <label class="form-label d-block">Tecnologia:</label>            
+        @foreach ($technologies as $technology)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="checkbox" id="technologyCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="technologies[]">
+                <label class="form-check-label" for="technologyCheckbox_{{ $loop->index }}">{{ $technology->name }}</label> 
+            </div>
+        @endforeach
+    </div>
+        <div class="mb-3">
             <label class="form-label">Link Github: </label>
             <input type="text" class="form-control" name="github_link">
         </div>
