@@ -29,7 +29,7 @@
         <label class="form-label d-block">Tecnologia</label>            
         @foreach ($technologies as $technology)
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="technologyCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="technologies[]">
+                <input class="form-check-input" type="checkbox" id="technologyCheckbox_{{ $loop->index }}" value="{{ $technology->id }}" name="technologies[]" {{ $project->technologies->contains('id', $technology->id) ? 'checked' : '' }}>
                 <label class="form-check-label" for="technologyCheckbox_{{ $loop->index }}">{{ $technology->name }}</label> 
             </div>
         @endforeach
