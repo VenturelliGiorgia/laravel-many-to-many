@@ -56,6 +56,11 @@ class ProjectController extends Controller
         $project->cover_img = $path;
         $project->github_link = $data["github_link"];
         $project->save();
+
+        if ($request->has("technologies")) {
+            $project->technologies()->attach($data["technologies"]);
+        }
+
         return redirect()->route("projects.show", $project->id);
     }
 
@@ -99,8 +104,7 @@ class ProjectController extends Controller
 
         $project->update($data);
 
-        $project->technologies()->attach($data["technologies"]);
-
+        $project->technologies()->sync($data["technologies"]);
         return redirect()->route('projects.show', $project->id);
     }
 
@@ -113,6 +117,12 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $project = Project::findOrFail($id);
+
+        if ($project->cover_img) {
+            Storage::delete($project->cover_img);
+        }
+
+        $project->technologies()->detach();
         $project->delete();
         return redirect()->route("projects.index");
     }
